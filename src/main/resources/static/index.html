@@ -27,14 +27,14 @@
         </div>
 
         <div class="singUp">
-            <form>
+            <form  action="/signup/saveplayer" method="post">
                 <label for="chk" aria-hidden="true">Sign Up</label>
                 <input type="text" name="fullName" placeholder="fullName" required>
                 <input type="number" name="age" placeholder="age" required>
                 <input type="text" name="nickName" placeholder="Nick Name" required>
-                <input type="password" name="verifyPswd" placeholder="Confirm Password" required>
                 <input type="password" name="pswd" placeholder="password" required>
-                <button>Sign Up</button>
+                <input type="password" name="verifyPswd" placeholder="Confirm Password" required>
+                <button action="#{PlayerBean.enter()}">Sign Up</button>
             </form>
         </div>
 
