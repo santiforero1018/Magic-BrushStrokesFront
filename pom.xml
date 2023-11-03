@@ -5,11 +5,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>edu.eci.pdsw.examples</groupId>
-	<artifactId>blueprints-api</artifactId>
+	<artifactId>magicbrushbtrokes</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>Blueprints_API</name>
+	<name>MagicBrushStrokes</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
