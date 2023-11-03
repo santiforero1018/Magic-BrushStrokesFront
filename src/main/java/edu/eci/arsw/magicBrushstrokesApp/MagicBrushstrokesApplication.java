@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import edu.eci.arsw.magicBrushstrokes.model.*;
+
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"edu.eci.arsw.magicBrushstrokes"})
