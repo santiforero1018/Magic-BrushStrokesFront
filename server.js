@@ -8,7 +8,7 @@ const cors = require('cors');
 const PORT = 3000; 
 
 app.use(cors({
-  origin: 'http://192.168.1.11:9090',
+  origin: 'http://10.2.67.60:9090', // Cambiar al momento de subir a azure
 }));
 
 app.use(express.static(path.join(__dirname, 'resources/static')));
@@ -22,5 +22,5 @@ app.use('/node_modules', express.static(path.join(__dirname, 'node_modules'), {
 }));
 
 app.listen(PORT, () => {
-  console.log(`Servidor en ejecución en http://localhost:${PORT}`);
+  console.log(`Servidor en ejecución en http://10.2.67.60:${PORT}`);
 });
