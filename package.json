@@ -4,7 +4,7 @@
   "description": "Front proyect ARSW",
   "main": "connect.js",
   "scripts": {
-    "start": "node ./server.js",
+    "start": "nodemon ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,5 +23,8 @@
     "jquery": "^3.6.0",
     "sockjs-client": "^1.6.1",
     "stomp-websocket": "^2.3.4-next"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
