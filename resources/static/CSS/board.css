@@ -1,0 +1,78 @@
+* {
+    animation: animateBg 5s linear infinite;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+   
+    align-items: center;
+    background: url("../IMG/fondo.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.screen{
+    display: flex;
+}
+
+
+.boards{
+    float: left;
+    height: auto;
+    width: 70%;  
+}
+
+.menu{
+    float: right;
+    height: auto;
+    width: 30%;  
+}
+
+@keyframes animateBg {
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+.canvas{
+    border: 2px solid white;
+    background-color: black;
+    animation: animateBg 5s linear infinite;
+}
+
+
+
+.distribution {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 5%;
+}
+.distribution > .canvas{
+    margin-left: 2%;
+}
+
+#powerButton{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    margin-top: -26px;
+    margin-left: 490px;
+    display: block;
+    color: #fff;
+    background: #573b8a;
+    font-size: 1em;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    transition: .2s ease-in-out;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#powerButton:hover{
+    background: #6d44b8;
+}
