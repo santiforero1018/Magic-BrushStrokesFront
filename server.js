@@ -7,9 +7,9 @@ const cors = require('cors');
 
 app.set('port', process.env.PORT || 3000);
 
-app.use(cors({
-  origin: 'http://192.168.1.11:9090', // Cambiar al momento de subir a azure
-}));
+// app.use(cors({
+//   origin: 'http://192.168.1.11:9090', // Cambiar al momento de subir a azure
+// }));
 
 app.use(express.static(path.join(__dirname, 'resources/static')));
 
