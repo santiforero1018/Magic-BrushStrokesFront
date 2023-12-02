@@ -8,7 +8,7 @@ const cors = require('cors');
 app.set('port', process.env.PORT || 3000);
 
 app.use(cors({
-  origin: 'https://magic-brusstrokesback.azurewebsites.net', // Cambiar al momento de subir a azure
+  origin: 'https://magicbrushstrokeswebappfront.azurewebsites.net', // Cambiar al momento de subir a azure
 }));
 
 app.use(express.static(path.join(__dirname, 'resources/static')));
