@@ -124,7 +124,7 @@ var connect = (function () {
             // Realiza una solicitud al servidor para obtener la asignación del canvas y el roomCode
 
             $.ajax({
-                url: "https://backproof.azurewebsites.net/board", // Cambiar al momento de subir a azure
+                url: "https://backproof.azurewebsites.net/API-v1.0MagicBrushStrokes/board", // Cambiar al momento de subir a azure
                 type: 'POST',
                 contentType: "application/json",
                 data: JSON.stringify({ roomCode: roomCode }),
