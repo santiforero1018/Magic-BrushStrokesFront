@@ -64,7 +64,7 @@ var connect = (function () {
 
     var connectAndSubscribe = function () {
         console.info('Connecting to WS...');
-        var socket = new SockJS("http://192.168.1.11:9090/stompendpoint");  // Cambiar al momento de subir a azure
+        var socket = new SockJS("https://backproof.azurewebsites.net/stompendpoint");  // Cambiar al momento de subir a azure
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, function (frame) {
@@ -124,7 +124,7 @@ var connect = (function () {
             // Realiza una solicitud al servidor para obtener la asignación del canvas y el roomCode
 
             $.ajax({
-                url: "http://192.168.1.11:9090/API-v1.0MagicBrushStrokes/board", // Cambiar al momento de subir a azure
+                url: "https://backproof.azurewebsites.net/board", // Cambiar al momento de subir a azure
                 type: 'POST',
                 contentType: "application/json",
                 data: JSON.stringify({ roomCode: roomCode }),
