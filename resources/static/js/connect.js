@@ -226,6 +226,21 @@ var connect = (function () {
                             });
                             connectAndSubscribe();
                         }
+                    }).catch(() => {
+                        canvas = document.getElementById(assignedCanvasId);
+                        prepareUnassignedCanvas();
+                        console.log("Canvas: " + assignedCanvasId);
+                        ctx = canvas.getContext("2d");
+                        canvas.addEventListener("pointerdown", function () {
+                            canvas.addEventListener("pointermove", draw, false);
+
+                            drawingPoint = [];
+                        }, false);
+                        canvas.addEventListener("pointerup", function () {
+                            endPointer();
+                            sendCanvasData();
+                        });
+                        connectAndSubscribe();
                     });
             } else {
                 canvas = document.getElementById(assignedCanvasId);
@@ -247,6 +262,6 @@ var connect = (function () {
         connectAndSubscribe,
         randomKey,
         connectToRoom,
-    }
+    }
 
 })();
