@@ -201,6 +201,7 @@ var connect = (function () {
             // Obtén el ID de canvas asignado al usuario desde la cookie o el almacenamiento local
             assignedCanvasId = localStorage.getItem('assignedCanvasId');
             if (!assignedCanvasId) {
+                console.log("entre al primer if: "+ assignedCanvasId);
                 requestCanvasAssignment(code)
                     .then(() => {
                         if (assignedCanvasId === "FULLROOM") {
