@@ -36,7 +36,6 @@ var connect = (function () {
 
 
     var draw = function (event) {
-
         var relative = canvas.getBoundingClientRect();
         var relX = event.clientX - relative.left, relY = event.clientY - relative.top;
 
@@ -46,7 +45,7 @@ var connect = (function () {
 
         ctx.beginPath();
         ctx.strokeStyle = "red";
-        ctx.lineWidth = 2;
+        ctx.lineWidth = 5;
         ctx.moveTo(lastPt.x, lastPt.y);
         ctx.lineTo(relX, relY);
         ctx.stroke();
@@ -84,9 +83,21 @@ var connect = (function () {
     }
 
     var handleDrawEvent = function (canvasData) {
-        if (canvasData.power && canvasData.senderId !== assignedCanvasId) {
+        if (Array.isArray(canvasData.drawingData) && canvasData.drawingData.length > 0) {
+            var canvasDraw = document.getElementById(canvasData.canvasId);
+            var ctxN = canvasDraw.getContext("2d");
+            ctxN.beginPath();
+            ctxN.strokeStyle = "red";
+            ctxN.lineWidth = 5;
+            for (var i = 0; i < canvasData.drawingData.length; i++) {
+                ctxN.lineTo(canvasData.drawingData[i].x, canvasData.drawingData[i].y);
+            }
+            ctxN.stroke();
+        }
+
+        else {
             var allCanvas = ["canvas1", "canvas2", "canvas3", "canvas4"];
-            var index = allCanvas.indexOf(assignedCanvasId);
+            var index = allCanvas.indexOf(canvasData.canvasId);
             allCanvas.splice(index, 1);
             var erase1 = document.getElementById(allCanvas[0]);
             var erase2 = document.getElementById(allCanvas[1]);
@@ -97,18 +108,9 @@ var connect = (function () {
             cer1.clearRect(0, 0, canvas.width, canvas.height);
             cer2.clearRect(0, 0, canvas.width, canvas.height);
             cer3.clearRect(0, 0, canvas.width, canvas.height);
-        } else {
-            var canvasDraw = document.getElementById(canvasData.canvasId);
-            var ctxN = canvasDraw.getContext("2d");
-            ctxN.beginPath();
-            ctxN.strokeStyle = "red";
-            ctxN.lineWidth = 2;
-            for (var i = 0; i < canvasData.drawingData.length; i++) {
-                ctxN.lineTo(canvasData.drawingData[i].x, canvasData.drawingData[i].y);
-            }
-            ctxN.stroke();
         }
-    };
+
+    }
 
     var sendCanvasData = function () {
         var canvasData = {
@@ -124,7 +126,7 @@ var connect = (function () {
             // Realiza una solicitud al servidor para obtener la asignación del canvas y el roomCode
 
             $.ajax({
-                url: "https://magickbrushstrokesback.azurewebsites.net/API-v1.0MagicBrushStrokes/welcome", // Cambiar al momento de subir a azure
+                url: "https://magickbrushstrokesback.azurewebsites.net/API-v1.0MagicBrushStrokes/board", // Cambiar al momento de subir a azure
                 type: 'POST',
                 contentType: "application/json",
                 data: JSON.stringify({ roomCode: roomCode }),
@@ -166,7 +168,9 @@ var connect = (function () {
 
     // Función para activar el "poder"
     const activatePower = () => {
+
         if (!powerActive) {
+            // Activa el "poder" y realiza la lógica para borrar los canvas de los demás jugadores
             powerActive = true;
             alert("¡Has activado el poder! Los demás canvas se borrarán.");
 
@@ -183,7 +187,6 @@ var connect = (function () {
             };
             stompClient.send("/app/room." + code, {}, JSON.stringify(canvasData));
 
-            // powerActive = false;
         }
     };
 
@@ -201,7 +204,7 @@ var connect = (function () {
             // Obtén el ID de canvas asignado al usuario desde la cookie o el almacenamiento local
             assignedCanvasId = localStorage.getItem('assignedCanvasId');
             if (!assignedCanvasId) {
-                console.log("entre al primer if: "+ assignedCanvasId);
+                console.log(assignedCanvasId);
                 requestCanvasAssignment(code)
                     .then(() => {
                         if (assignedCanvasId === "FULLROOM") {
@@ -223,14 +226,11 @@ var connect = (function () {
                             });
                             connectAndSubscribe();
                         }
-                    }).catch(() => {
-                        console.log("Aqui reviento: "+assignedCanvasId);
                     });
             } else {
                 canvas = document.getElementById(assignedCanvasId);
                 console.log("Canvas: " + assignedCanvasId);
                 ctx = canvas.getContext("2d");
-
                 canvas.addEventListener("pointerdown", function () {
                     canvas.addEventListener("pointermove", draw, false);
 
@@ -247,6 +247,6 @@ var connect = (function () {
         connectAndSubscribe,
         randomKey,
         connectToRoom,
-    }
+    }
 
 })();
