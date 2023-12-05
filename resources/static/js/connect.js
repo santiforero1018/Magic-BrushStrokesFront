@@ -223,6 +223,8 @@ var connect = (function () {
                             });
                             connectAndSubscribe();
                         }
+                    }).catch(() => {
+                        console.log("Aqui reviento: "+assignedCanvasId);
                     });
             } else {
                 canvas = document.getElementById(assignedCanvasId);
