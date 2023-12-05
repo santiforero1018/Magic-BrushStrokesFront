@@ -202,7 +202,7 @@ var connect = (function () {
             // Escucha el clic en el "poder" y llama a la función de activación
             document.getElementById("powerButton").addEventListener("click", activatePower);
             // Obtén el ID de canvas asignado al usuario desde la cookie o el almacenamiento local
-            assignedCanvasId = "canvas1" /*localStorage.getItem('assignedCanvasId')*/;
+            assignedCanvasId = localStorage.getItem('assignedCanvasId');
             if (!assignedCanvasId) {
                 console.log(assignedCanvasId);
                 requestCanvasAssignment(code)
