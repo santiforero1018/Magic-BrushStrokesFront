@@ -63,7 +63,7 @@ var connect = (function () {
 
     var connectAndSubscribe = function () {
         console.info('Connecting to WS...');
-        var socket = new SockJS("http://magickbrushstrokesback.azurewebsites.net/stompendpoint");  // Cambiar al momento de subir a azure
+        var socket = new SockJS("http://magicbrushback.azurewebsites.net/stompendpoint");  // Cambiar al momento de subir a azure
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, function (frame) {
@@ -126,7 +126,7 @@ var connect = (function () {
             // Realiza una solicitud al servidor para obtener la asignación del canvas y el roomCode
 
             $.ajax({
-                url: "http://magickbrushstrokesback.azurewebsites.net/API-v1.0MagicBrushStrokes/welcome", // Cambiar al momento de subir a azure
+                url: "http://magicbrushback.azurewebsites.net/API-v1.0MagicBrushStrokes/welcome", // Cambiar al momento de subir a azure
                 type: 'POST',
                 contentType: "application/json",
                 data: JSON.stringify({ roomCode: roomCode }),
