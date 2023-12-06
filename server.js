@@ -7,6 +7,10 @@ const cors = require('cors');
 
 app.set('port', process.env.PORT || 3000);
 
+app.use(cors({
+  origin: 'http://magicbrushstrokeswebappfront.azurewebsites.net', // Cambiar al momento de subir a azure
+}));
+
 app.use(express.static(path.join(__dirname, 'resources/static')));
 
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules'), {
